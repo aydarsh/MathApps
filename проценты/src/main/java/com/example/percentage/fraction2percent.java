@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class fraction2percent extends AppCompatActivity implements View.OnClickListener{
@@ -31,7 +34,7 @@ public class fraction2percent extends AppCompatActivity implements View.OnClickL
 
         ListView lvExercises = (ListView) findViewById(R.id.lvExercises);
         alExercises = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alExercises);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alExercises);
         lvExercises.setAdapter(adapter);
     }
 
@@ -39,18 +42,25 @@ public class fraction2percent extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnFind:
-                if (TextUtils.isEmpty(etNum1.getText().toString()) || TextUtils.isEmpty(etNum2.getText().toString())) return;
-                String strNumber, strExercise, strTemp;
-                strNumber = etNum1.getText().toString();
-                if (strNumber.indexOf('.') == -1) {
-                    int num = Integer.parseInt(strNumber);
-                    strExercise = String.format("%d = %d * 100%% = %d%%", num, num, num * 100);
-                } else {
-                    double num = Double.parseDouble(strNumber);
-                    int placesAfterPoint = strNumber.length() - strNumber.indexOf('.') -1;
-                    strTemp = String.format("%%.%df = %%.%df * 100%%%% = %%.%df%%%%", placesAfterPoint, placesAfterPoint, placesAfterPoint>2 ? placesAfterPoint-2 : 0);
-                    strExercise = String.format(strTemp, num, num, num * 100);
-                }
+                String strNumber1, strNumber2, strExercise;
+                strNumber1 = etNum1.getText().toString();
+                strNumber2 = etNum2.getText().toString();
+                if (TextUtils.isEmpty(strNumber1) || TextUtils.isEmpty(strNumber2)) break;
+
+                BigDecimal num1 = new BigDecimal(strNumber1);
+                BigDecimal num2 = new BigDecimal(strNumber2);
+
+                if (num2.compareTo(BigDecimal.ZERO) == 0) break;
+
+                BigDecimal result = num1.divide(num2, 25, RoundingMode.HALF_UP);
+                DecimalFormat formatter = new DecimalFormat("#.################");
+                String strResult = formatter.format(result.doubleValue());
+                String strNum1 = formatter.format(Double.parseDouble(strNumber1));
+                String strNum2 = formatter.format(Double.parseDouble(strNumber2));
+                formatter.applyPattern("#.##############%");
+                String strResultPercent = formatter.format(result.doubleValue());
+
+                strExercise = String.format("%s / %s = %s = %s", strNum1, strNum2, strResult, strResultPercent);
                 alExercises.add(0, strExercise);
                 adapter.notifyDataSetChanged();
                 etNum1.getText().clear();

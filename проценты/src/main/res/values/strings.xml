@@ -10,7 +10,7 @@
     <string name="percentdecrease">Скидка на сколько-то процентов</string>
     <string name="ex1">Например, 25% = 0,25</string>
     <string name="ex2">Например, 0,05 = 5%</string>
-    <string name="ex3">Например, 30 км из 200 км это 15%</string>
+    <string name="ex3">Например, 30 км от 200 км это 15%</string>
     <string name="ex4">Например, 35% от 80 страниц это 28 страниц</string>
     <string name="ex5">Например, 12 пирожков это 25% от какого-то числа, а это число равно 48 пирожкам</string>
     <string name="ex6">Например, обувь стоит 2000 рублей, цена увеличилась на 15%. Новая цена - 2300 рублей</string>
@@ -18,6 +18,6 @@
     <string name="ex1_1">Пример: 25% = 25 * 0,01 = 0,25</string>
     <string name="find">Найти</string>
     <string name="ex2_1">Пример: 0,05 = 0,05 * 100% = 5%</string>
-    <string name="ex3_1">Пример: 30 км из 200 км это 30 / 200 = 0,15 = 15%</string>
-    <string name="of">из</string>
+    <string name="ex3_1">Пример: 30 км от 200 км это 30 / 200 = 0,15 = 15%</string>
+    <string name="of">от</string>
 </resources>
