@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -39,19 +41,19 @@ public class percent2decimal extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnFind:
-                if (TextUtils.isEmpty(etPercent.getText().toString())) return;
-                String strNumber, strExercise, strTemp;
+                String strNumber, strExercise;
                 strNumber = etPercent.getText().toString();
-                if (strNumber.indexOf('.') == -1) {
-                    int num = Integer.parseInt(strNumber);
-                    strExercise = String.format("%d%% = %d * 0,01 = %.2f", num, num, num*0.01);
-                }
-                else {
-                    double num = Double.parseDouble(strNumber);
-                    int placesAfterPoint = strNumber.length() - strNumber.indexOf('.') -1;
-                    strTemp = String.format("%%.%df%%%% = %%.%df * 0,01 = %%.%df", placesAfterPoint, placesAfterPoint, placesAfterPoint+2);
-                    strExercise = String.format(strTemp, num, num, num*0.01);
-                }
+                if (TextUtils.isEmpty(strNumber)) break;
+
+                BigDecimal num = new BigDecimal(strNumber);
+
+                BigDecimal result = num.multiply(new BigDecimal("0.01"));
+                DecimalFormat formatter = new DecimalFormat("#.################");
+                String strResult = formatter.format(result.doubleValue());
+                String strNum = formatter.format(Double.parseDouble(strNumber));
+
+                strExercise = String.format("%s%% = %s * 0,01 = %s", strNum, strNum, strResult);
+
                 alExercises.add(0, strExercise);
                 adapter.notifyDataSetChanged();
                 etPercent.getText().clear();
