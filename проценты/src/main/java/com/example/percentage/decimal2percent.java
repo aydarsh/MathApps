@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class decimal2percent extends AppCompatActivity implements View.OnClickListener{
@@ -30,7 +32,7 @@ public class decimal2percent extends AppCompatActivity implements View.OnClickLi
 
         ListView lvExercises = (ListView) findViewById(R.id.lvExercises);
         alExercises = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alExercises);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alExercises);
         lvExercises.setAdapter(adapter);
     }
 
@@ -38,18 +40,19 @@ public class decimal2percent extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnFind:
-                if (TextUtils.isEmpty(etDecimal.getText().toString())) return;
-                String strNumber, strExercise, strTemp;
+                String strNumber, strExercise;
                 strNumber = etDecimal.getText().toString();
-                if (strNumber.indexOf('.') == -1) {
-                    int num = Integer.parseInt(strNumber);
-                    strExercise = String.format("%d = %d * 100%% = %d%%", num, num, num * 100);
-                } else {
-                    double num = Double.parseDouble(strNumber);
-                    int placesAfterPoint = strNumber.length() - strNumber.indexOf('.') -1;
-                    strTemp = String.format("%%.%df = %%.%df * 100%%%% = %%.%df%%%%", placesAfterPoint, placesAfterPoint, placesAfterPoint>2 ? placesAfterPoint-2 : 0);
-                    strExercise = String.format(strTemp, num, num, num * 100);
-                }
+                if (TextUtils.isEmpty(strNumber)) break;
+
+                BigDecimal num = new BigDecimal(strNumber);
+
+                DecimalFormat formatter = new DecimalFormat("#.#########");
+                String strNum = formatter.format(num.doubleValue());
+                formatter.applyPattern("#.#########%");
+                String strResult = formatter.format(num.doubleValue());
+
+                strExercise = String.format("%s = %s * 100%% = %s", strNum, strNum, strResult);
+
                 alExercises.add(0, strExercise);
                 adapter.notifyDataSetChanged();
                 etDecimal.getText().clear();

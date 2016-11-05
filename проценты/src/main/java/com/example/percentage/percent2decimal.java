@@ -50,7 +50,7 @@ public class percent2decimal extends AppCompatActivity implements View.OnClickLi
                 BigDecimal result = num.multiply(new BigDecimal("0.01"));
                 DecimalFormat formatter = new DecimalFormat("#.################");
                 String strResult = formatter.format(result.doubleValue());
-                String strNum = formatter.format(Double.parseDouble(strNumber));
+                String strNum = formatter.format(num.doubleValue());
 
                 strExercise = String.format("%s%% = %s * 0,01 = %s", strNum, strNum, strResult);
 
