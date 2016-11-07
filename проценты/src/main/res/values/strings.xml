@@ -18,6 +18,8 @@
     <string name="ex1_1">Пример: 25% = 25 * 0,01 = 0,25</string>
     <string name="find">Найти</string>
     <string name="ex2_1">Пример: 0,05 = 0,05 * 100% = 5%</string>
-    <string name="ex3_1">Пример: 30 км от 200 км это 30 / 200 = 0,15 = 15%</string>
+    <string name="ex3_1">Пример: 30 от 200. \n30 = x * 200; \nx = 30 / 200 = 0,15 = 15%</string>
     <string name="of">от</string>
+    <string name="ex4_1">Пример: 35% от 80. \nx = 0,35 * 80 = 28</string>
+    <string name="percentof">% от</string>
 </resources>

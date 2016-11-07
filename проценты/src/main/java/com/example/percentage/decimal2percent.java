@@ -46,9 +46,9 @@ public class decimal2percent extends AppCompatActivity implements View.OnClickLi
 
                 BigDecimal num = new BigDecimal(strNumber);
 
-                DecimalFormat formatter = new DecimalFormat("#.#########");
+                DecimalFormat formatter = new DecimalFormat("#.#####");
                 String strNum = formatter.format(num.doubleValue());
-                formatter.applyPattern("#.#########%");
+                formatter.applyPattern("#.###%");
                 String strResult = formatter.format(num.doubleValue());
 
                 strExercise = String.format("%s = %s * 100%% = %s", strNum, strNum, strResult);

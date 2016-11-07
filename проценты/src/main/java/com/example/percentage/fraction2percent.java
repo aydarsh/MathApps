@@ -53,14 +53,14 @@ public class fraction2percent extends AppCompatActivity implements View.OnClickL
                 if (num2.compareTo(BigDecimal.ZERO) == 0) break;
 
                 BigDecimal result = num1.divide(num2, 25, RoundingMode.HALF_UP);
-                DecimalFormat formatter = new DecimalFormat("#.################");
+                DecimalFormat formatter = new DecimalFormat("#.#####");
                 String strResult = formatter.format(result.doubleValue());
-                String strNum1 = formatter.format(Double.parseDouble(strNumber1));
-                String strNum2 = formatter.format(Double.parseDouble(strNumber2));
-                formatter.applyPattern("#.##############%");
+                String strNum1 = formatter.format(num1.doubleValue());
+                String strNum2 = formatter.format(num2.doubleValue());
+                formatter.applyPattern("#.##########%");
                 String strResultPercent = formatter.format(result.doubleValue());
 
-                strExercise = String.format("%s / %s = %s = %s", strNum1, strNum2, strResult, strResultPercent);
+                strExercise = String.format("%s от %s. \n%s = x * %s; \nx = %s / %s = %s = %s", strNum1, strNum2, strNum1, strNum2, strNum1, strNum2, strResult, strResultPercent);
                 alExercises.add(0, strExercise);
                 adapter.notifyDataSetChanged();
                 etNum1.getText().clear();
