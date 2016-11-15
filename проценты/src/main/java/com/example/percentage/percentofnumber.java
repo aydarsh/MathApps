@@ -57,7 +57,8 @@ public class percentofnumber extends AppCompatActivity implements View.OnClickLi
                 String strNum2 = formatter.format(num2.doubleValue());
                 String strNum1dividedBy100 = formatter.format(num1.multiply(new BigDecimal("0.01")).doubleValue());
 
-                strExercise = String.format("%s%% от %s. \nx = %s%% * %s = %s * %s = %s", strNum1, strNum2, strNum1, strNum2, strNum1dividedBy100, strNum2, strResult);
+                strExercise = String.format("%s%% от %s. \nx = %s * %s = %s",
+                        strNum1, strNum2, strNum1dividedBy100, strNum2, strResult);
                 alExercises.add(0, strExercise);
                 adapter.notifyDataSetChanged();
                 etNum1.getText().clear();

@@ -60,7 +60,7 @@ public class fraction2percent extends AppCompatActivity implements View.OnClickL
                 formatter.applyPattern("#.##########%");
                 String strResultPercent = formatter.format(result.doubleValue());
 
-                strExercise = String.format("%s от %s. \n%s = x * %s; \nx = %s / %s = %s = %s", strNum1, strNum2, strNum1, strNum2, strNum1, strNum2, strResult, strResultPercent);
+                strExercise = String.format("%s от %s. \n%s = x * %s; \nx = %s : %s = %s = %s", strNum1, strNum2, strNum1, strNum2, strNum1, strNum2, strResult, strResultPercent);
                 alExercises.add(0, strExercise);
                 adapter.notifyDataSetChanged();
                 etNum1.getText().clear();
