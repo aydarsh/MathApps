@@ -24,4 +24,6 @@
     <string name="percentof" formatted="false">% от</string>
     <string name="is">это</string>
     <string name="ex5_1" formatted="false">Пример: 12 это 25%. \n12 = 25% * x; \nx = 12 : 0,25 = 48</string>
+    <string name="plus">+</string>
+    <string name="ex6_1" formatted="false">Пример: 2000 + 15%. \nx = 2000 * (1 + 0,15) = 2000 * 1,15 = 2300</string>
 </resources>
